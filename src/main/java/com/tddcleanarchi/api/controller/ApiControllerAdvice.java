@@ -1,4 +1,4 @@
-package com.tddcleanarchi.api;
+package com.tddcleanarchi.api.controller;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

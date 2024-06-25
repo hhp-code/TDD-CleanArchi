@@ -1,6 +1,9 @@
-package com.tddcleanarchi.api;
+package com.tddcleanarchi.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tddcleanarchi.api.controller.dto.LectureDTO;
+import com.tddcleanarchi.api.controller.dto.LectureSlotDTO;
+import com.tddcleanarchi.api.service.LectureService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -69,9 +72,12 @@ class LectureControllerTest {
     @Test
     void 특강신청_요청처리의_정상() throws Exception {
         // given
-        UserApplicationDTO lectureDTO = new UserApplicationDTO(userId, lectureName);
+        LectureSlotDTO lectureDTO = LectureSlotDTO.builder()
+                .id(userId)
+                .lectureId(1L)
+                .build();
         // when
-        when(lectureService.applyAndSearchAndReturnsHttpMessage(any(UserApplicationDTO.class)))
+        when(lectureService.applyAndSearchAndReturnsHttpMessage(any(LectureSlotDTO.class)))
                 .thenReturn(ResponseEntity.ok(lectureDTO));
 
         // then
@@ -81,14 +87,14 @@ class LectureControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(new ObjectMapper().writeValueAsString(lectureDTO)));
 
-        verify(lectureService).applyAndSearchAndReturnsHttpMessage(any(UserApplicationDTO.class));
+        verify(lectureService).applyAndSearchAndReturnsHttpMessage(any(LectureSlotDTO.class));
     }
     @Test
     void 특강신청_조회처리의_정상(){
         // given
         //when 신청 가능한 특강이 있을때
         List<LectureDTO> somethingList = List.of();
-        when(lectureService.getAvailableClasses(userId)).thenReturn(somethingList);
+        when(lectureService.getAvailableLectures()).thenReturn(somethingList);
         try {
             mockMvc.perform(get("/lectures/application/{userId}", userId))
                     .andExpect(status().isOk())
@@ -96,7 +102,7 @@ class LectureControllerTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        verify(lectureService).getAvailableClasses(userId);
+        verify(lectureService).getAvailableLectures();
 
     }
 
