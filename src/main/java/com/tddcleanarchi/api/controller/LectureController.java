@@ -23,7 +23,7 @@ public class LectureController {
     }
 
     @PostMapping("/apply")
-    public ResponseEntity<LectureSlotDTO> apply(LectureSlotDTO lectureSlotDTO) {
+    public ResponseEntity<LectureSlotDTO> apply(@RequestBody LectureSlotDTO lectureSlotDTO) {
         return lectureService.applyAndSearchAndReturnsHttpMessage(lectureSlotDTO);
     }
     @GetMapping("/application/{userId}")

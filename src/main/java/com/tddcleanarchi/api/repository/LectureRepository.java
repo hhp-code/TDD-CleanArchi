@@ -1,20 +1,18 @@
 package com.tddcleanarchi.api.repository;
 
 import com.tddcleanarchi.api.domain.Lecture;
+import com.tddcleanarchi.api.domain.LectureSlot;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Optional;
 
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
+    // 특정 강의의 특정 신청자 조회
+    @Query("SELECT ls FROM Lecture l JOIN l.enrollee ls WHERE l.lectureId = :lectureId AND ls.userId = :userId")
+    Optional<LectureSlot> findEnrolleeByLectureIdAndUserId(@Param("lectureId") Long lectureId, @Param("userId") Long userId);
 
-    // 특정 날짜 이후의 특강 목록 조회
-    List<Lecture> findByLectureTimeAfter(@Param("date") LocalDateTime date);
-
-    // 특정 강의의 현재 신청자 수 조회
-    int countEnrollmentsByLectureId(Long userId);
 }
 
