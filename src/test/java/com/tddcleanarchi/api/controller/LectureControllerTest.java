@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * ## API Specs
  *
- * 1️⃣**(핵심)** 특강 신청 **API `POST /lectures/applyAndSearchAndReturnsHttpMessage`**
+ * 1️⃣**(핵심)** 특강 신청 **API `POST /lectures/applySequence`**
  *
  * - 특정 lectureId 로 선착순으로 제공되는 특강을 신청하는 API 를 작성합니다.
  * - 동일한 신청자는 한 번의 수강 신청만 성공할 수 있습니다.
@@ -77,7 +77,7 @@ class LectureControllerTest {
                 .lectureId(1L)
                 .build();
         // when
-        when(lectureService.applyAndSearchAndReturnsHttpMessage(any(LectureSlotDTO.class)))
+        when(lectureService.applySequence(any(LectureSlotDTO.class)))
                 .thenReturn(ResponseEntity.ok(lectureDTO));
 
         // then
@@ -87,7 +87,7 @@ class LectureControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(new ObjectMapper().writeValueAsString(lectureDTO)));
 
-        verify(lectureService).applyAndSearchAndReturnsHttpMessage(any(LectureSlotDTO.class));
+        verify(lectureService).applySequence(any(LectureSlotDTO.class));
     }
     @Test
     void 특강신청_조회처리의_정상(){

@@ -32,15 +32,4 @@ public class Lecture {
     private List<LectureSlot> enrollee = new ArrayList<>();
 
 
-    public boolean isAvailableForApplication() {
-        return enrollee.size() < capacity;
-    }
-
-    public void addApplication(LectureSlot application) {
-        if (isAvailableForApplication()) {
-            throw new IllegalStateException("강의 정원이 초과되었습니다.");
-        }
-        enrollee.add(application);
-        application.setLecture(this);
-    }
 }
