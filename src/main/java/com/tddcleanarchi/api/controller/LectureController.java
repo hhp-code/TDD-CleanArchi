@@ -1,12 +1,9 @@
 package com.tddcleanarchi.api.controller;
 
-import com.tddcleanarchi.api.service.LectureService;
-import com.tddcleanarchi.api.controller.dto.LectureSlotDTO;
 import com.tddcleanarchi.api.controller.dto.LectureDTO;
-import org.springframework.http.ResponseEntity;
+import com.tddcleanarchi.api.controller.dto.LectureDTOMapper;
+import com.tddcleanarchi.api.service.LectureService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/lectures")
@@ -17,19 +14,26 @@ public class LectureController {
         this.lectureService = lectureService;
     }
     @GetMapping
-    public ResponseEntity<List<LectureDTO>> getLectures() {
-        List<LectureDTO> availableClasses = lectureService.getAvailableLectures();
-        return ResponseEntity.ok(availableClasses);
+    public LectureDTO.CreateListResponse getLectures() {
+        return LectureDTOMapper.toResponse(
+                lectureService.getLectures()
+        );
     }
 
     @PostMapping("/apply")
-    public ResponseEntity<LectureSlotDTO> apply(@RequestBody LectureSlotDTO lectureSlotDTO) {
-        return lectureService.applySequence(lectureSlotDTO);
+    public LectureDTO.CreateApplyResponse apply(@RequestBody LectureDTO.CreateApplyRequest request) {
+        request.validate();
+        return LectureDTOMapper.toResponse(
+                lectureService.create(LectureDTOMapper.toCommand(request))
+        );
     }
     @GetMapping("/application/{userId}")
-    public ResponseEntity<ResultMessage> application(@PathVariable  long userId) {
-        ResultMessage resultMessage = lectureService.isSuccessfullyApplied(userId);
-        return ResponseEntity.ok(resultMessage);
+    public LectureDTO.CreateStatusResponse application(@PathVariable Long userId) {
+        LectureDTO.CreateStatusRequest request = new LectureDTO.CreateStatusRequest(userId);
+        request.validate();
+        return LectureDTOMapper.toResponse(
+                lectureService.status(LectureDTOMapper.toSearch(request))
+        );
     }
 
 }

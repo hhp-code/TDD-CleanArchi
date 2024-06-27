@@ -2,8 +2,6 @@ spring:
   config:
     activate:
       on-profile: local
-  profiles:
-    default: local
   test:
     database:
       replace: none
@@ -16,7 +14,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
-    show-sql: true
+    show-sql: false
     properties:
         hibernate.format_sql: true
         hibernate.use_sql_comments: true
@@ -28,10 +26,8 @@ spring:
 
 logging:
   level:
-    org.springframework.jdbc.datasource.init: DEBUG
+    org.hibernate.SQL: OFF
     org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 ---
 server:
   port: 0
