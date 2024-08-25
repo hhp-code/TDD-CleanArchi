@@ -1,4 +1,4 @@
-package com.tddcleanarchi.api.service;
+package com.tddcleanarchi.domain.service;
 
 import lombok.experimental.UtilityClass;
 

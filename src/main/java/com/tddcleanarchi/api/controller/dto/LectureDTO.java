@@ -1,6 +1,6 @@
 package com.tddcleanarchi.api.controller.dto;
 
-import com.tddcleanarchi.api.domain.Lecture;
+import com.tddcleanarchi.domain.Lecture;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

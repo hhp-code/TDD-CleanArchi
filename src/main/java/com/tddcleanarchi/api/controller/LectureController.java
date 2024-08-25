@@ -2,7 +2,7 @@ package com.tddcleanarchi.api.controller;
 
 import com.tddcleanarchi.api.controller.dto.LectureDTO;
 import com.tddcleanarchi.api.controller.dto.LectureDTOMapper;
-import com.tddcleanarchi.api.service.LectureService;
+import com.tddcleanarchi.domain.service.LectureService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,6 +1,6 @@
-package com.tddcleanarchi.api.repository;
+package com.tddcleanarchi.infra;
 
-import com.tddcleanarchi.api.domain.Lecture;
+import com.tddcleanarchi.domain.Lecture;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LectureJPARepository extends JpaRepository<Lecture, Long> {

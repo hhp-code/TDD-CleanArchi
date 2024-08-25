@@ -1,4 +1,4 @@
-package com.tddcleanarchi.api.domain;
+package com.tddcleanarchi.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

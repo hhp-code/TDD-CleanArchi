@@ -1,8 +1,8 @@
 package com.tddcleanarchi.api.controller.dto;
 
-import com.tddcleanarchi.api.domain.Lecture;
-import com.tddcleanarchi.api.domain.LectureSlot;
-import com.tddcleanarchi.api.service.LectureCommand;
+import com.tddcleanarchi.domain.Lecture;
+import com.tddcleanarchi.domain.LectureSlot;
+import com.tddcleanarchi.domain.service.LectureCommand;
 
 import java.util.List;
 

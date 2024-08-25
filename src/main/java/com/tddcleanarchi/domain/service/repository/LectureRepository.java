@@ -1,6 +1,6 @@
-package com.tddcleanarchi.api.service.repository;
+package com.tddcleanarchi.domain.service.repository;
 
-import com.tddcleanarchi.api.domain.Lecture;
+import com.tddcleanarchi.domain.Lecture;
 
 import java.util.List;
 import java.util.Optional;

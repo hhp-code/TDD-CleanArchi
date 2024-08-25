@@ -1,7 +1,7 @@
-package com.tddcleanarchi.api.repository;
+package com.tddcleanarchi.infra;
 
-import com.tddcleanarchi.api.domain.Lecture;
-import com.tddcleanarchi.api.service.repository.LectureRepository;
+import com.tddcleanarchi.domain.Lecture;
+import com.tddcleanarchi.domain.service.repository.LectureRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
